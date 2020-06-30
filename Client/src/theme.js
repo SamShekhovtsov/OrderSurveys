@@ -4,7 +4,7 @@ import muliVariations from './fontDefinitions';
 
 // A custom theme for this app
 const theme = createMuiTheme({
-  palette: {
+  /*palette: {
     primary: {
       main: '#1DB954',
       contrastText: "#fff"
@@ -24,13 +24,13 @@ const theme = createMuiTheme({
     text: {
       primary: "#4A4A4A",
     }
-  },
+  },*/
   typography: {
     fontFamily: "'Muli', sans-serif",
     //fontSize: '6.5vmin',
-    button: {
+    /*button: {
       textTransform: 'none'
-    },
+    },*/
     body1: {
       //fontSize: '0.7rem',
     },
@@ -49,7 +49,7 @@ const theme = createMuiTheme({
     //},
   },
   overrides: {
-    MuiButton: {
+    /*MuiButton: {
       root: {
         borderRadius: "0.4em",
         borderColor: "#138C3E",
@@ -62,52 +62,8 @@ const theme = createMuiTheme({
       root: {
         fontSize: '1.4em',
       },
-    },
-    MuiSelect: {
-      select: {
-        width: '20rem',
-        border: '0.0999em solid #979797',
-        boxShadow: '0 2px 0 3px rgba(0, 0, 0, 0.06)',
-        borderRadius: '.3em',
-        //backgroundColor: '#fff',
-        backgroundImage: 'linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)',
-        //backgroundRepeat: 'no-repeat, repeat',
-        //backgroundPosition: 'right .7em top 50%, 0 0',
-        //backgroundSize: '.65em auto, 100%',
-        padding: '.58rem 0 .58rem 1.2rem',
-        "&:focus": {
-          borderRadius: '.3em',
-          backgroundColor: '#fff',
-          border: '0.078em solid #979797',
-        },
-        "&&": {
-          paddingRight: 0,
-          borderRadius: '.3em',
-        },
-      },
-      /* Styles applied to the select component if `variant="filled"`. */
-      filled: {
-        '&&': {
-          paddingRight: 0,
-          borderRadius: '.3em',
-        },
-      },
-      /* Styles applied to the select component if `variant="outlined"`. */
-      outlined: {
-        paddingRight: 0,
-        borderRadius: '.3em',
-        '&&': {
-          paddingRight: 0,
-          borderRadius: '.3em',
-        },
-      },
-      icon: {
-        top: 'calc(50% - .68rem)',
-        right: '.3em',
-        color: '#46474B',
-      },
-    },
-    MuiInput: {
+    },*/
+    /*MuiInput: {
       underline: {
         "&:before": {
           content: "",
@@ -125,14 +81,14 @@ const theme = createMuiTheme({
           marginTop: "1.8em"
         },
       },
-    },
-    MuiInputLabel: {
+    },*/
+    /*MuiInputLabel: {
       formControl: {
         left: '1.3em',
         zIndex: '10',
         transform: 'translate(0, 2.4em) scale(1)',
       }
-    },
+    },*/
     MuiCssBaseline: {
       '@global': {
         '@font-face': muliVariations,
