@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import AppStyles from './AppStyles'
 import FetchGetRequestInit from './fetchInit'
-import { InputLabel, TextField } from '@material-ui/core';
+import { InputLabel, TextField, Grid } from '@material-ui/core';
 
 class App extends Component {
   constructor(props) {
@@ -50,16 +50,28 @@ class App extends Component {
             <Typography variant="h5">Please, provide Amazon order id to verify</Typography>
           </header>
           <div className={classes.headerSplitLine}></div>
-          <div>
-            <InputLabel><Typography variant="caption">Amazon Order ID #</Typography></InputLabel>
-            <TextField
-              //error
-              id="amazonOrderId"
-              label="Fill Order #"
-              defaultValue="Order #"
-            />
-            <Button variant="contained" color="primary"><Typography variant="caption">Validate Order</Typography></Button>
-          </div>
+          <Grid
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+            spacing={2}
+          >
+            <Grid item>
+              <InputLabel><Typography variant="caption">Amazon Order ID #</Typography></InputLabel>
+            </Grid>
+            <Grid item>
+              <TextField
+                //error
+                id="amazonOrderId"
+                label="Fill Order #"
+                defaultValue="Order #"
+              />
+            </Grid>
+            <Grid item>
+              <Button variant="contained" color="primary"><Typography variant="caption">Validate Order</Typography></Button>
+            </Grid>
+          </Grid>
         </form>
       </Container>
     )
