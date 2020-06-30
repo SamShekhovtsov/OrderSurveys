@@ -1,11 +1,14 @@
-import { red } from '@material-ui/core/colors';
+import { red, green } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import muliVariations from './fontDefinitions';
 
 // A custom theme for this app
 const theme = createMuiTheme({
-  /*palette: {
-    primary: {
+  palette: {
+    success: {
+      main: green,
+    }
+    /*primary: {
       main: '#1DB954',
       contrastText: "#fff"
     },
@@ -23,8 +26,8 @@ const theme = createMuiTheme({
     },
     text: {
       primary: "#4A4A4A",
-    }
-  },*/
+    }*/
+  },
   typography: {
     fontFamily: "'Muli', sans-serif",
     //fontSize: '6.5vmin',

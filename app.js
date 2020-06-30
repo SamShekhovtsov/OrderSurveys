@@ -60,12 +60,40 @@ app.get('/tryfindorder', async (req,res) => {
   const { id, region } = req.query;
   try {
     const url = `https://data.seller.tools/api/v1/orders/${id}`
+    let apiAuthKey = process.env.AmazonApiKeyDE
+    switch(region)
+    {
+      case "UK": {
+        apiAuthKey = process.env.AmazonApiKeyUK
+        break
+      }
+      case "UKtest": {
+        apiAuthKey = process.env.AmazonApiKeyUKtest
+        break
+      }
+      case "DE": {
+        apiAuthKey = process.env.AmazonApiKeyDE
+        break
+      }
+      case "DEtest": {
+        apiAuthKey = process.env.AmazonApiKeyDEtest
+        break
+      }
+      case "US": {
+        apiAuthKey = process.env.AmazonApiKeyUS
+        break
+      }
+      case "UStest": {
+        apiAuthKey = process.env.AmazonApiKeyUStest
+        break
+      }
+    }
     const orderInfo = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `${process.env.AmazonApiKeyDE}`,
+        Authorization: `${apiAuthKey}`,
       },
     })
     const json = await orderInfo.json()
