@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import AppStyles from './AppStyles'
 import FetchGetRequestInit from './fetchInit'
-import { InputLabel, TextField, Grid, Box } from '@material-ui/core';
+import { InputLabel, TextField, Grid, Box, LinearProgress, CircularProgress } from '@material-ui/core';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class App extends Component {
       amazonOrderIdError: false,
       amazonOrderIdModified: false,
       amazonRegion: storeRegion,
+      amazonOrderIsValidating: false,
     }
 
     this._onValidateOrderClicked = this._onValidateOrderClicked.bind(this)
@@ -32,6 +33,9 @@ class App extends Component {
     const { amazonOrderId, amazonRegion } = this.state
     if(amazonOrderId && amazonOrderId.length > 2) {
     const fetchUri = `/tryfindorder?id=${amazonOrderId}&region=${amazonRegion}`
+    this.setState({
+      amazonOrderIsValidating: true,
+    })
     fetch(fetchUri, FetchGetRequestInit)
       .then(res => res.json())
       .then(data => {
@@ -39,6 +43,7 @@ class App extends Component {
         this.setState({
           amazonOrderIsValid: orderExists,
           amazonOrderIdModified: false,
+          amazonOrderIsValidating: false,
         })
       })
       .catch(error => console.log(error))
@@ -60,7 +65,7 @@ class App extends Component {
 
   render() {
     const classes = this.props.classes
-    const { amazonOrderIdModified, amazonOrderIsValid, amazonOrderId, amazonOrderIdError } = this.state
+    const { amazonOrderIsValidating, amazonOrderIdModified, amazonOrderIsValid, amazonOrderId, amazonOrderIdError } = this.state
 
     /*const pageContent = (
       <p>
@@ -72,7 +77,7 @@ class App extends Component {
     //<InputLabel></InputLabel>
 
     let orderValidationResult = ""
-    if(amazonOrderIsValid != null && !amazonOrderIdError && !amazonOrderIdModified){
+    if(amazonOrderIsValid != null && !amazonOrderIdError && !amazonOrderIdModified && !amazonOrderIsValidating){
       if(amazonOrderIsValid) {
         orderValidationResult = <Typography color="success" variant="h6">Order {amazonOrderId} is found and valid!</Typography>
       } else {
@@ -95,6 +100,7 @@ class App extends Component {
             spacing={3}
           >
             <Grid item>
+              {amazonOrderIsValidating ? <LinearProgress /> : ""}
               {orderValidationResult}
             </Grid>
             <Grid item>
@@ -107,12 +113,14 @@ class App extends Component {
                 //defaultValue="Order #"
               />
             </Grid>
-            <Grid item>
-              <Button  onClick={this._onValidateOrderClicked}
+            <Grid item className={classes.positionRelative}>
+              <Button onClick={this._onValidateOrderClicked}
                 variant="contained"
-                color="primary">
+                color="primary"
+                disabled={amazonOrderIsValidating}>
                   <Typography variant="caption">Validate Order</Typography>
               </Button>
+              {amazonOrderIsValidating && <CircularProgress size={24} className={classes.buttonProgress} />}
             </Grid>
           </Grid>
         </form>

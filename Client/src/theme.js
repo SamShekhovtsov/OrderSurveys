@@ -6,7 +6,7 @@ import muliVariations from './fontDefinitions';
 const theme = createMuiTheme({
   palette: {
     success: {
-      main: green,
+      main: green[800],
     }
     /*primary: {
       main: '#1DB954',
