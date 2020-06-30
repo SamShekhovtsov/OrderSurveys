@@ -11,21 +11,29 @@ class App extends Component {
   constructor(props) {
     super(props)
     //const urlParams = new URLSearchParams(window.location.search);
-    //this.state = {
-    //  temp1323: false
-    //}
+    this.state = {
+      amazonOrderIsValid: null
+    }
 
     this._onValidateOrderClicked = this._onValidateOrderClicked.bind(this)
   }
 
   componentDidMount() {
+
   }
-
-
 
   _onValidateOrderClicked(event) {
     const amazonOrderId = event.target.value
-    
+    const fetchUri = `/tryfindorder?id=${amazonOrderId}&region=DE`
+    fetch(fetchUri, FetchGetRequestInit)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          amazonOrderIsValid: data.orderExists,
+        })
+      })
+      .catch(error => console.log(error))
+
     //this.setState(state => ({
     //  orderId: amazonOrderId
     //}))
@@ -69,7 +77,11 @@ class App extends Component {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary"><Typography variant="caption">Validate Order</Typography></Button>
+              <Button  onClick={this._onValidateOrderClicked}
+                variant="contained"
+                color="primary">
+                  <Typography variant="caption">Validate Order</Typography>
+              </Button>
             </Grid>
           </Grid>
         </form>

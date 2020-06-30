@@ -75,7 +75,7 @@ app.get('/tryfindorder', async (req,res) => {
       orderExists = true
     }
 
-    res.status(200).json(json)
+    res.status(200).json({orderExists: orderExists})
     //res.status(200).send(orderInfo.body)
 
     //res.render('index', json)
