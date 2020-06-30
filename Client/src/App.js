@@ -83,42 +83,38 @@ class App extends Component {
     return (
       <Container className={classes.root}>
         <form className={classes.root} noValidate autoComplete="off">
-        <Container>
-          <header className={classes.headerText}>
-            <Typography variant="h5">Please, provide Amazon order id to verify</Typography>
-          </header>
-          <div className={classes.headerSplitLine}></div>
-        </Container>
-        <Container>
-          <Grid
-              container
-              direction="column"
-              justify="flex-start"
-              alignItems="center"
-              spacing={3}
-            >
-              <Grid item>
-                {orderValidationResult}
-              </Grid>
-              <Grid item>
-                <TextField
-                  {...(amazonOrderIdError ? {error: 'error'} : {})}
-                  value={this.state.amazonOrderId}
-                  onChange={this._onAmazonOrderIdChange}
-                  id="txfAmazonOrderId"
-                  label="Fill Order #"
-                  //defaultValue="Order #"
-                />
-              </Grid>
-              <Grid item>
-                <Button  onClick={this._onValidateOrderClicked}
-                  variant="contained"
-                  color="primary">
-                    <Typography variant="caption">Validate Order</Typography>
-                </Button>
-              </Grid>
+        <header className={classes.headerText}>
+          <Typography variant="h5">Please, provide Amazon order id to verify</Typography>
+        </header>
+        <div className={classes.headerSplitLine}></div>
+        <Grid className={classes.orderValidateForm}
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="center"
+            spacing={3}
+          >
+            <Grid item>
+              {orderValidationResult}
             </Grid>
-          </Container>
+            <Grid item>
+              <TextField
+                {...(amazonOrderIdError ? {error: 'error'} : {})}
+                value={this.state.amazonOrderId}
+                onChange={this._onAmazonOrderIdChange}
+                id="txfAmazonOrderId"
+                label="Fill Order #"
+                //defaultValue="Order #"
+              />
+            </Grid>
+            <Grid item>
+              <Button  onClick={this._onValidateOrderClicked}
+                variant="contained"
+                color="primary">
+                  <Typography variant="caption">Validate Order</Typography>
+              </Button>
+            </Grid>
+          </Grid>
         </form>
       </Container>
     )

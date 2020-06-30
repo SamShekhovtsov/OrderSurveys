@@ -18,6 +18,9 @@ const AppStyles = theme => ({
     margin: 'auto',
     padding: 0,
   },
+  orderValidateForm: {
+    display: 'unset',
+  }
 });
 
 export default AppStyles;
